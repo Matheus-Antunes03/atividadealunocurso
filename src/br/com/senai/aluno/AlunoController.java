@@ -31,5 +31,5 @@ public class AlunoController {
 		
 		return aluno;
 	}
-	
+	System.out.println("odio");
 }

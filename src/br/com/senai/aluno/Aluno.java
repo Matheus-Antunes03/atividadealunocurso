@@ -27,6 +27,6 @@ public class Aluno extends Curso {
 		this.curso = curso;
 	}
 	
-	
+	System.out.println("odio");
 	
 }

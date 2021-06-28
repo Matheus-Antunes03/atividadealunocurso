@@ -24,4 +24,5 @@ public class Endereco {
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
+	System.out.println("odio");
 }
