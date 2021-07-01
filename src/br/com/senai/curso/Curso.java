@@ -11,5 +11,5 @@ public class Curso {
 	public void setNomeCurso(String nomeCurso) {
 		this.nomeCurso = nomeCurso;
 	}
-	System.out.println("odio");
+
 }
