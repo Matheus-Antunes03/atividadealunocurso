@@ -92,17 +92,21 @@ public class CursoController {
 		System.out.println("--- EXCLUIR CURSO ---");
 		System.out.print("Informe o Id do curso para excluir: ");
 		int idCurso = tec.nextInt() - 1;
-
-		if (cursos.get(idCurso).getNomeCurso() == alunos.get(idCurso).getCurso()) {
-			System.out.println("Não é possível excluir um curso que possua um aluno cadastrado.");
-			return;
-		}
-
+		
 		if (cursos.size() <= idCurso) {
 			System.out.println("Curso não cadastrado.");
 			return;
 		}
-
+		
+		if (alunos.isEmpty()) {
+			cursos.remove(idCurso);
+			return;
+		}
+		
+		if (cursos.get(idCurso).getNomeCurso() == alunos.get(idCurso).getCurso()) {
+			System.out.println("Não é possível excluir um curso que possua um aluno cadastrado.");
+			return;
+		}
 		cursos.remove(idCurso);
 	}
 

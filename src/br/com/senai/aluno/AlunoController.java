@@ -54,7 +54,7 @@ public class AlunoController {
 		return aluno;
 	}
 
-	public List<Aluno> listarAlunos(List<Aluno> alunos) {
+	public List<Aluno> listarAlunos(List<Aluno> alunos, List <Curso> cursos) {
 
 		if (alunos.isEmpty()) {
 			System.out.println("Nenhum aluno cadastrado.");
@@ -63,23 +63,29 @@ public class AlunoController {
 
 		System.out.println("--- ALUNOS CADASTRADOS ---");
 
-		System.out.printf("| %2s | %15s | %6s | %10s | %10s | %15s | %15s |\n", "Id", "Nome", "Idade", "Curso", "País",
+		System.out.printf("| %2s | %15s | %6s | %15s | %10s | %15s | %15s |\n", "Id", "Nome", "Idade", "Curso", "País",
 				"Estado", "Cidade");
 
 		for (int i = 0; i < alunos.size(); i++) {
-			System.out.printf("| %2s | %15s | %6d | %10s | %10s | %15s | %15s |\n", i + 1, alunos.get(i).getNomeAluno(),
-					alunos.get(i).getIdadeAluno(), alunos.get(i).getCurso(), alunos.get(i).getPais(),
-					alunos.get(i).getEstado(), alunos.get(i).getCidade());
+			System.out.printf("| %2s | %15s | %6d | %15s | %10s | %15s | %15s |\n",
+					i + 1,
+					alunos.get(i).getNomeAluno(),
+					alunos.get(i).getIdadeAluno(),
+					cursos.get(i).getNomeCurso(),
+					alunos.get(i).getPais(),
+					alunos.get(i).getEstado(),
+					alunos.get(i).getCidade());
 		}
 
 		return alunos;
 	}
 
-	public List<Aluno> editarAluno(List<Aluno> alunos) {
+	public List<Aluno> editarAluno(List<Aluno> alunos, List<Curso> cursos) {
 
+		Curso curso = new Curso();
 		Aluno aluno = new Aluno();
 
-		listarAlunos(alunos);
+		listarAlunos(alunos, cursos);
 
 		if (alunos.isEmpty()) {
 			return null;
@@ -129,8 +135,10 @@ public class AlunoController {
 
 		case 3:
 			System.out.println("--- EDITAR O CURSO ---");
-			System.out.print("Informe o novo curso: ");
-			aluno.setCurso(tec.next());
+			cursoController.listarCursos(cursos);
+			System.out.print("Informe o Id do novo curso: ");
+			int idCurso = tec.nextInt() - 1;
+			aluno.setCurso(cursos.get(idCurso).getNomeCurso());
 
 			aluno.setNomeAluno(alunos.get(idAluno).getNomeAluno());
 			aluno.setIdadeAluno(alunos.get(idAluno).getIdadeAluno());
@@ -190,9 +198,9 @@ public class AlunoController {
 		return alunos;
 	}
 
-	public void excluirAlunos(List<Aluno> alunos) {
+	public void excluirAlunos(List<Aluno> alunos, List<Curso> cursos) {
 
-		listarAlunos(alunos);
+		listarAlunos(alunos, cursos);
 
 		if (alunos.isEmpty()) {
 			return;
@@ -227,15 +235,15 @@ public class AlunoController {
 				break;
 
 			case 2:
-				listarAlunos(alunos);
+				listarAlunos(alunos, cursos);
 				break;
 
 			case 3:
-				editarAluno(alunos);
+				editarAluno(alunos, cursos);
 				break;
 
 			case 4:
-				excluirAlunos(alunos);
+				excluirAlunos(alunos, cursos);
 				break;
 
 			case 5:
