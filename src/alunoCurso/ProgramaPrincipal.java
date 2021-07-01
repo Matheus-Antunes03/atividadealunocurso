@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class ProgramaPrincipal {
 
 	public static void main(String[] args) {
-
+		
 		List<Aluno> alunos = new ArrayList<>();
 		List<Curso> cursos = new ArrayList<>();
 
